@@ -1,5 +1,5 @@
 <?php
-    class Chambre 
+    class Chambre implements ICampus
     {
         protected $numero;
         protected $type;
@@ -7,10 +7,18 @@
 
         public function __construct($row=null)
         {
-            $this->numero=$row['numero'];
-            $this->numero_batiment=$row['numero_batiment'];
+            if($row!=null)
+            {
+                $this->hydrate($row);
+            }
         }
+        public function hydrate($row)
+        {
 
+        $this->numero = @$row['numero'];
+        $this->type = @$row['type'];
+        $this->numero_batiment = @$row['numero_batiment'];
+        }
 
         public function getNumero()
         {

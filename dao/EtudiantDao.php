@@ -1,33 +1,40 @@
 <?php
  class EtudiantDao extends Manager
- {
+{
 
     public function __construct()
     {
-        $this->tableName="etudiants";
-        $this->classname="Etudiant";
+        $this->tableName = "etudiants";
+        $this->classname = "Etudiant";
     }
 
     public function add($obj)
     {
-        $num_bat=intval($obj['numero_batiment']);
-        $type=$obj['type'];
-        $sql="INSERT INTO $this->tableName VALUES(DEFAULT,$num_bat,'$type')";
-        return $this->executeUpdate($sql)!=0;
-
+        return "add methode";
     }
 
     public function update($obj)
     {
-       
     }
-
-    public function findAll($limit,$offset)
+   
+    public function search($tab)
     {
-        $sql="select * from $this->tableName LIMIT $limit OFFSET $offset";
+        $sql_add="";
+        if($tab['profil']!=="")
+        {
+            if ($tab['matricule'] !== "")
+            {
+                $sql_add = "WHERE `matricule` LIKE '%" . $tab['matricule'] . "%' AND `profil`='" . $tab['profil'] . "'";
+            }else
+            {
+                $sql_add= "WHERE `profil`='" . $tab['profil'] . "'";   
+            }
+        }
+        $sql = "select * FROM $this->tableName  $sql_add";
+        //$sql = " SELECT * FROM `chambres`";
+           // $sql="select * FROM $this->tableName ORDER BY `numero` DESC LIMIT $limit OFFSET $offset ";
         return $this->executeSelect($sql);
     }
 
 
-
- }
+}

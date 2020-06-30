@@ -16,7 +16,12 @@
         return $this->executeUpdate($sql)!=0;
     }
 
+    public function update($obj)
+    {
 
+    }
+
+   
 
 
  }

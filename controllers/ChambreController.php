@@ -26,7 +26,6 @@ class ChambreController extends Controller
             }
             else
             {
-               // extract($_POST);
                 $this->dao=new ChambreDao();
                 $result=$this->dao->add($_POST);
                if($result)
